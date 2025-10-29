@@ -1,8 +1,6 @@
--- Inserir usuários conforme especificação do projeto
--- admin@loja.com: Admin@123 (hash BCrypt)
--- cliente@loja.com: Cliente@123 (hash BCrypt)
-INSERT INTO users (nome, email, senha, perfil) VALUES ('Administrador', 'admin@loja.com', '$2a$10$N.zmdr9k7uOCQb07YitZ4.Hm6.KTdJ.G9B5sURIGefPCqg.Zj3XrO', 'ADMIN');
-INSERT INTO users (nome, email, senha, perfil) VALUES ('Cliente', 'cliente@loja.com', '$2a$10$8zf2ZnWh3pxBr2GlwTFaDu1YQK.PJyX4SvnWdOOGK2PZGL2gFJ4M6', 'CLIENTE');
+-- Inserir usuários (senhas simples, sem criptografia)
+INSERT INTO users (nome, email, senha, perfil) VALUES ('Administrador', 'admin@loja.com', 'admin123', 'ADMIN');
+INSERT INTO users (nome, email, senha, perfil) VALUES ('Cliente', 'cliente@loja.com', 'cliente123', 'CLIENTE');
 
 -- Inserir produtos
 INSERT INTO product (nome, descricao, preco, ativo) VALUES ('Produto A', 'Descricao do Produto A', 50.00, true);

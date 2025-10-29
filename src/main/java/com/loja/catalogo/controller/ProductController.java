@@ -17,8 +17,6 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    // ===== ENDPOINTS PADRÃO (CLIENTE e ADMIN) =====
-
     @GetMapping
     public ResponseEntity<List<Product>> getAllActiveProducts() {
         List<Product> products = productService.findAllActiveProducts();
@@ -36,8 +34,6 @@ public class ProductController {
         Product product = productService.findById(id);
         return ResponseEntity.ok(product);
     }
-
-    // ===== ENDPOINTS ESPECIAIS (APENAS ADMIN) =====
 
     @GetMapping("/inactive")
     @PreAuthorize("hasRole('ADMIN')")
