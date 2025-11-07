@@ -48,4 +48,8 @@ public class ProductService {
         product.setAtivo(false);
         productRepository.save(product);
     }
+
+    public List<Product> findByPrecoBetween(Double minPrice, Double maxPrice) {
+        return productRepository.findByPrecoBetween(minPrice, maxPrice);
+    }
 }

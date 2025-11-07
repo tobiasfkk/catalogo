@@ -35,6 +35,14 @@ public class ProductController {
         return ResponseEntity.ok(product);
     }
 
+    @GetMapping("/price-range")
+    public ResponseEntity<List<Product>> getProductsByPriceRange(
+            @RequestParam Double minPrice,
+            @RequestParam Double maxPrice) {
+        List<Product> products = productService.findByPrecoBetween(minPrice, maxPrice);
+        return ResponseEntity.ok(products);
+    }
+
     @GetMapping("/inactive")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<Product>> getAllInactiveProducts() {
