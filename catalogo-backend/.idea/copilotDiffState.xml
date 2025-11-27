@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/SENHAS_SIMPLIFICADAS.md">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/SENHAS_SIMPLIFICADAS.md" />
+              <option name="updatedContent" value="# ✅ SENHAS SIMPLIFICADAS - RESUMO&#10;&#10;##  Mudanças Realizadas:&#10;&#10;### 1. **AuthService.java**&#10;- ❌ Removido: BCryptPasswordEncoder&#10;- ✅ Adicionado: Comparação direta de senhas (`senha.equals()`)&#10;&#10;### 2. **data.sql**&#10;- Senhas atualizadas para formato simples&#10;- ✅ Admin: `admin123`&#10;- ✅ Cliente: `cliente123`&#10;&#10;### 3. **SecurityConfig.java**&#10;- Mantido o bean PasswordEncoder (caso precise no futuro)&#10;- Mas NÃO está sendo usado no login&#10;&#10;---&#10;&#10;##  Como Testar no Postman:&#10;&#10;### **LOGIN como ADMIN:**&#10;```&#10;POST http://localhost:8080/auth/login&#10;Content-Type: application/json&#10;&#10;{&#10;  &quot;email&quot;: &quot;admin@loja.com&quot;,&#10;  &quot;senha&quot;: &quot;admin123&quot;&#10;}&#10;```&#10;&#10;### **LOGIN como CLIENTE:**&#10;```&#10;POST http://localhost:8080/auth/login&#10;Content-Type: application/json&#10;&#10;{&#10;  &quot;email&quot;: &quot;cliente@loja.com&quot;,&#10;  &quot;senha&quot;: &quot;cliente123&quot;&#10;}&#10;```&#10;&#10;---&#10;&#10;##  Credenciais de Acesso:&#10;&#10;| Email | Senha | Perfil |&#10;|-------|-------|--------|&#10;| admin@loja.com | **admin123** | ADMIN |&#10;| cliente@loja.com | **cliente123** | CLIENTE |&#10;&#10;---&#10;&#10;##  Testando Fluxo Completo:&#10;&#10;### 1️⃣ Fazer Login:&#10;```bash&#10;curl -X POST http://localhost:8080/auth/login \&#10;  -H &quot;Content-Type: application/json&quot; \&#10;  -d '{&quot;email&quot;:&quot;admin@loja.com&quot;,&quot;senha&quot;:&quot;admin123&quot;}'&#10;```&#10;&#10;### 2️⃣ Copiar o token da resposta&#10;&#10;### 3️⃣ Usar o token para acessar endpoint protegido:&#10;```bash&#10;curl http://localhost:8080/products/inactive \&#10;  -H &quot;Authorization: Bearer SEU_TOKEN_AQUI&quot;&#10;```&#10;&#10;---&#10;&#10;## ✨ Pronto!&#10;&#10;Agora o sistema está **super simples**:&#10;- ✅ Senhas em texto plano (admin123, cliente123)&#10;- ✅ Sem criptografia BCrypt&#10;- ✅ Login funcional&#10;- ✅ JWT funcionando&#10;&#10;**Reconstrua o Docker** com:&#10;```bash&#10;docker-compose down&#10;docker-compose up --build -d&#10;```&#10;&#10;Aguarde ~30 segundos para o serviço iniciar e teste! &#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

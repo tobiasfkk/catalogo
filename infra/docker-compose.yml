@@ -13,7 +13,10 @@ services:
       - postgres_data:/var/lib/postgresql/data
 
   api:
-    build: .
+    build:
+      context: ../catalogo-backend
+      dockerfile: Dockerfile
+    container_name: catalogo-backend
     ports:
       - "8080:8080"
     depends_on:

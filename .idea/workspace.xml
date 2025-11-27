@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c1f8acd8-d9e1-49c3-86a7-8042a0406030" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/catalogo-backend/.dockerignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/catalogo-backend/.gitattributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/catalogo-backend/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/catalogo-backend/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/catalogo-backend/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUIA_JWT.md" beforeDir="false" afterPath="$PROJECT_DIR$/catalogo-backend/GUIA_JWT.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/infra/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/catalogo-backend/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/catalogo-backend/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/catalogo-backend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/loja/catalogo/CatalogoBackendApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/catalogo-backend/src/main/java/com/loja/catalogo/CatalogoBackendApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/loja/catalogo/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/catalogo-backend/src/main/java/com/loja/catalogo/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/loja/catalogo/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/catalogo-backend/src/main/java/com/loja/catalogo/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/loja/catalogo/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/catalogo-backend/src/main/java/com/loja/catalogo/controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/loja/catalogo/dto/LoginRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/catalogo-backend/src/main/java/com/loja/catalogo/dto/LoginRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/loja/catalogo/dto/LoginResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/catalogo-backend/src/main/java/com/loja/catalogo/dto/LoginResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/loja/catalogo/entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/catalogo-backend/src/main/java/com/loja/catalogo/entity/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/loja/catalogo/entity/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/catalogo-backend/src/main/java/com/loja/catalogo/entity/Profile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/loja/catalogo/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/catalogo-backend/src/main/java/com/loja/catalogo/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/loja/catalogo/repository/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/catalogo-backend/src/main/java/com/loja/catalogo/repository/ProductRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/loja/catalogo/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/catalogo-backend/src/main/java/com/loja/catalogo/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/loja/catalogo/security/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/catalogo-backend/src/main/java/com/loja/catalogo/security/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/loja/catalogo/security/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/catalogo-backend/src/main/java/com/loja/catalogo/security/JwtUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/loja/catalogo/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/catalogo-backend/src/main/java/com/loja/catalogo/service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/loja/catalogo/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/catalogo-backend/src/main/java/com/loja/catalogo/service/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/loja/catalogo/util/PasswordGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/catalogo-backend/src/main/java/com/loja/catalogo/util/PasswordGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/catalogo-backend/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/catalogo-backend/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/catalogo-backend/src/main/resources/data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/loja/catalogo/CatalogoBackendApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/catalogo-backend/src/test/java/com/loja/catalogo/CatalogoBackendApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/loja/catalogo/repository/ProductRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/catalogo-backend/src/test/java/com/loja/catalogo/repository/ProductRepositoryTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="34iMEwGeN99Vt9IFPBUXE7GSpKU" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JUnit.ProductRepositoryTest.executor": "Run",
+    "JUnit.ProductRepositoryTest.shouldFindProductsByPriceRange.executor": "Run",
+    "JUnit.ProductRepositoryTest.shouldSaveAndFindActiveProducts.executor": "Run",
+    "Maven.catalogo-backend [clean].executor": "Run",
+    "Maven.catalogo-backend [install].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "main",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/tobiaskiefer/udesc/catalogo",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "terminal",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/infra" />
+      <recent name="$PROJECT_DIR$/catalogo-backend" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.ProductRepositoryTest">
+    <configuration name="ProductRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="catalogo-backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.loja.catalogo.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.loja.catalogo.repository" />
+      <option name="MAIN_CLASS_NAME" value="com.loja.catalogo.repository.ProductRepositoryTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProductRepositoryTest.shouldFindProductsByPriceRange" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="catalogo-backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.loja.catalogo.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.loja.catalogo.repository" />
+      <option name="MAIN_CLASS_NAME" value="com.loja.catalogo.repository.ProductRepositoryTest" />
+      <option name="METHOD_NAME" value="shouldFindProductsByPriceRange" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProductRepositoryTest.shouldSaveAndFindActiveProducts" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="catalogo-backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.loja.catalogo.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.loja.catalogo.repository" />
+      <option name="MAIN_CLASS_NAME" value="com.loja.catalogo.repository.ProductRepositoryTest" />
+      <option name="METHOD_NAME" value="shouldSaveAndFindActiveProducts" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CatalogoBackendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="catalogo-backend" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.loja.catalogo.CatalogoBackendApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.ProductRepositoryTest" />
+        <item itemvalue="JUnit.ProductRepositoryTest.shouldFindProductsByPriceRange" />
+        <item itemvalue="JUnit.ProductRepositoryTest.shouldSaveAndFindActiveProducts" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.27397.103" />
+        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-IU-252.27397.103" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c1f8acd8-d9e1-49c3-86a7-8042a0406030" name="Changes" comment="" />
+      <created>1761691831306</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1761691831306</updated>
+      <workItem from="1761691832557" duration="5269000" />
+      <workItem from="1762475373989" duration="5285000" />
+      <workItem from="1762481712674" duration="96000" />
+      <workItem from="1763301585603" duration="1001000" />
+      <workItem from="1764116075365" duration="3395000" />
+      <workItem from="1764121259169" duration="4568000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/catalogo-backend/src/test/java/com/loja/catalogo/repository/ProductRepositoryTest.java</url>
+          <line>63</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
