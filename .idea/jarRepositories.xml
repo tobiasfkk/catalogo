@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RemoteRepositoriesConfiguration">
+    <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="libs-release" />
+      <option name="url" value="http://maven.senior.com.br:8081/artifactory/libs-release" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="icm" />
+      <option name="name" value="ICM Repository" />
+      <option name="url" value="http://maven.senior.com.br:8081/artifactory/libs-release" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven-central" />
+      <option name="name" value="Maven Central" />
+      <option name="url" value="https://repo.maven.apache.org/maven2" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="ga" />
+      <option name="name" value="libs-release" />
+      <option name="url" value="https://maven.repository.redhat.com/ga/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="xwiki" />
+      <option name="name" value="XWiki Externals Repository" />
+      <option name="url" value="https://maven.xwiki.org/externals/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="spring-releases" />
+      <option name="name" value="Spring Releases" />
+      <option name="url" value="https://repo.spring.io/release" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="Maven Central repository" />
+      <option name="url" value="https://repo1.maven.org/maven2" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="jboss.community" />
+      <option name="name" value="JBoss Community repository" />
+      <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="bintray-jspare-maven" />
+      <option name="name" value="bintray" />
+      <option name="url" value="http://maven.senior.com.br:8081/artifactory/libs-release" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="snapshots" />
+      <option name="name" value="libs-snapshot" />
+      <option name="url" value="http://maven.senior.com.br:8081/artifactory/libs-snapshot" />
+    </remote-repository>
+  </component>
+</project>
