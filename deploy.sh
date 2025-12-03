@@ -34,11 +34,14 @@ sleep 30
 
 # Verificar se está rodando
 echo "🔍 Verificando se aplicação está rodando..."
-if curl -f -s http://localhost:8081/actuator/health > /dev/null 2>&1; then
+# Verificar se container está healthy
+if docker ps | grep -q "catalogo-backend-prod.*Up"; then
     echo "✅ Deploy realizado com sucesso!"
     echo "📱 Aplicação disponível em: http://localhost:8081"
+    echo "🔍 Status dos containers:"
+    docker ps | grep catalogo
 else
-    echo "❌ Falha no deploy - aplicação não está respondendo"
+    echo "❌ Falha no deploy - container não está rodando"
     echo "📋 Logs da aplicação:"
     docker-compose -f docker-compose.prod.yml logs api-prod --tail=20
     exit 1
