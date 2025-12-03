@@ -16,8 +16,12 @@ docker-compose down || true
 # Remover containers órfãos se existirem
 echo ""
 echo ">>> Cleaning up old containers..."
-echo "$ docker rm -f catalogo-database catalogo-backend catalogo-frontend"
-docker rm -f catalogo-database catalogo-backend catalogo-frontend 2>/dev/null || true
+echo "$ docker rm -f catalogo-database catalogo-backend catalogo-frontend postgres_catalogo_prod catalogo-backend-prod catalogo-frontend-prod"
+docker rm -f catalogo-database catalogo-backend catalogo-frontend postgres_catalogo_prod catalogo-backend-prod catalogo-frontend-prod 2>/dev/null || true
+
+echo ">>> Checking for containers using our ports..."
+echo "$ docker ps --filter publish=3000 --filter publish=8081 --filter publish=5433 -q | xargs -r docker stop"
+docker ps --filter publish=3000 --filter publish=8081 --filter publish=5433 -q | xargs -r docker stop 2>/dev/null || true
 
 # Construir nova imagem do backend
 echo ""
@@ -48,8 +52,8 @@ echo ""
 echo ">>> Starting new version..."
 echo "$ export DB_PASSWORD=${DB_PASSWORD:-postgres123}"
 export DB_PASSWORD=${DB_PASSWORD:-postgres123}
-echo "$ docker-compose up -d"
-docker-compose up -d
+echo "$ docker-compose up -d --remove-orphans"
+docker-compose up -d --remove-orphans
 
 # Aguardar e verificar se aplicação subiu
 echo ""
