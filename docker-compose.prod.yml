@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   db-prod:
     image: postgres:15
@@ -48,9 +46,7 @@ services:
           cpus: '0.5'
 
   frontend-prod:
-    build:
-      context: ./catalogo-frontend
-      dockerfile: Dockerfile
+    image: catalogo-frontend:latest
     container_name: catalogo-frontend-prod
     ports:
       - "3000:80"

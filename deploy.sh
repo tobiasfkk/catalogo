@@ -16,8 +16,8 @@ docker-compose -f docker-compose.prod.yml down || true
 # Remover containers órfãos se existirem
 echo ""
 echo ">>> Cleaning up old containers..."
-echo "$ docker rm -f postgres_catalogo_prod catalogo-backend-prod nginx-catalogo-prod"
-docker rm -f postgres_catalogo_prod catalogo-backend-prod nginx-catalogo-prod 2>/dev/null || true
+echo "$ docker rm -f postgres_catalogo_prod catalogo-backend-prod catalogo-frontend-prod nginx-catalogo-prod"
+docker rm -f postgres_catalogo_prod catalogo-backend-prod catalogo-frontend-prod nginx-catalogo-prod 2>/dev/null || true
 
 # Construir nova imagem do backend
 echo ""
