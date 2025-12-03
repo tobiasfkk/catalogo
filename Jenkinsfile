@@ -24,13 +24,14 @@ pipeline {
                 buildingTag()
             }
             steps {
-                echo '🚀 Fazendo deploy...'
+                echo '🚀 Fazendo deploy da versão ${env.TAG_NAME}...'
                 dir('catalogo-backend') {
                     sh './mvnw clean package -DskipTests'
-                    sh "docker build -t ${DOCKER_IMAGE}:latest ."
                 }
-                sh 'docker-compose -f docker-compose.prod.yml down || true'
-                sh 'docker-compose -f docker-compose.prod.yml up -d'
+                script {
+                    // Executar script de deploy
+                    sh "./deploy.sh ${env.TAG_NAME}"
+                }
             }
         }
     }
