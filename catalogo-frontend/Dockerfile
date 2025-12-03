@@ -18,8 +18,8 @@ RUN npm run build
 # Imagem final com Nginx
 FROM nginx:alpine
 
-# Copiar arquivos buildados para o Nginx
-COPY --from=builder /app/dist/catalogo-frontend /usr/share/nginx/html
+# Copiar arquivos buildados para o Nginx (Angular 20+ usa /browser)
+COPY --from=builder /app/dist/catalogo-frontend/browser /usr/share/nginx/html
 
 # Configuração personalizada do Nginx (opcional)
 COPY nginx.conf /etc/nginx/conf.d/default.conf
