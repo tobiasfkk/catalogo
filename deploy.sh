@@ -30,9 +30,9 @@ sleep 30
 
 # Verificar se está rodando
 echo "🔍 Verificando se aplicação está rodando..."
-if curl -f -s http://localhost:8080/actuator/health > /dev/null 2>&1; then
+if curl -f -s http://localhost:8081/actuator/health > /dev/null 2>&1; then
     echo "✅ Deploy realizado com sucesso!"
-    echo "📱 Aplicação disponível em: http://localhost:8080"
+    echo "📱 Aplicação disponível em: http://localhost:8081"
 else
     echo "❌ Falha no deploy - aplicação não está respondendo"
     echo "📋 Logs da aplicação:"
