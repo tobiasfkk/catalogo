@@ -210,8 +210,9 @@ export class LoginComponent {
 
         console.log('Login realizado com sucesso:', loginResponse);
         
-        // Redirecionar para página principal (vamos criar depois)
+        // Redirecionar para página de produtos
         alert(`Login realizado com sucesso! Bem-vindo, ${loginResponse.nome}!`);
+        this.router.navigate(['/products']);
         
       } else {
         const error = await response.text();
