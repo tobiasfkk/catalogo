@@ -28,21 +28,23 @@ echo "🆙 Subindo nova versão..."
 export DB_PASSWORD=${DB_PASSWORD:-postgres123}
 docker-compose -f docker-compose.prod.yml up -d
 
-# Aguardar aplicação subir
+# Aguardar e verificar se aplicação subiu
 echo "⏳ Aguardando aplicação inicializar..."
-sleep 30
+for i in {1..12}; do
+    echo "🔍 Verificação $i/12..."
+    sleep 10
+    
+    # Verificar se aplicação respondeu nos logs
+    if docker-compose -f docker-compose.prod.yml logs api-prod 2>/dev/null | grep -q "Started CatalogoBackendApplication"; then
+        echo "✅ Deploy realizado com sucesso!"
+        echo "📱 Aplicação disponível em: http://localhost:8081"
+        echo "🔍 Status dos containers:"
+        docker ps | grep catalogo
+        exit 0
+    fi
+done
 
-# Verificar se está rodando
-echo "🔍 Verificando se aplicação está rodando..."
-# Verificar se container está healthy
-if docker ps | grep -q "catalogo-backend-prod.*Up"; then
-    echo "✅ Deploy realizado com sucesso!"
-    echo "📱 Aplicação disponível em: http://localhost:8081"
-    echo "🔍 Status dos containers:"
-    docker ps | grep catalogo
-else
-    echo "❌ Falha no deploy - container não está rodando"
-    echo "📋 Logs da aplicação:"
-    docker-compose -f docker-compose.prod.yml logs api-prod --tail=20
-    exit 1
-fi
+echo "❌ Timeout - aplicação não inicializou completamente"
+echo "📋 Logs da aplicação:"
+docker-compose -f docker-compose.prod.yml logs api-prod --tail=30
+exit 1
