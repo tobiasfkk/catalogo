@@ -35,6 +35,7 @@ public class SecurityConfig {
                 // Endpoints públicos (não precisam de token)
                 .requestMatchers("/auth/**").permitAll() // Login é público
                 .requestMatchers("/products/**").permitAll() // Products públicos por enquanto
+                .requestMatchers("/actuator/health").permitAll() // Health check público para deploy
                 // Todos os outros endpoints precisam de autenticação
                 .anyRequest().authenticated()
             )
