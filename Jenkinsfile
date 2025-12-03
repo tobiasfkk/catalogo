@@ -28,7 +28,12 @@ pipeline {
                 anyOf {
                     buildingTag()
                     expression { return env.GIT_BRANCH?.contains('refs/tags/') }
-                    expression { return params.DEPLOY_TAG != null }
+                    expression { return params.DEPLOY_TAG != null && params.DEPLOY_TAG != '' }
+                    expression { 
+                        // Verifica se há tags recentes para deploy
+                        def result = sh(script: 'git tag --sort=-version:refname | head -1', returnStdout: true).trim()
+                        return result != null && result != ''
+                    }
                 }
             }
             steps {

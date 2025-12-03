@@ -12,6 +12,10 @@ echo "🚀 Iniciando deploy da versão: $VERSION"
 echo "🛑 Parando aplicação atual..."
 docker-compose -f docker-compose.prod.yml down || true
 
+# Remover containers órfãos se existirem
+echo "🧹 Limpando containers antigos..."
+docker rm -f postgres_catalogo_prod catalogo-backend-prod nginx-catalogo-prod 2>/dev/null || true
+
 # Construir nova imagem
 echo "🔨 Construindo nova imagem..."
 cd catalogo-backend
