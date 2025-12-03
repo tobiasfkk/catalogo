@@ -19,15 +19,27 @@ echo ">>> Cleaning up old containers..."
 echo "$ docker rm -f postgres_catalogo_prod catalogo-backend-prod nginx-catalogo-prod"
 docker rm -f postgres_catalogo_prod catalogo-backend-prod nginx-catalogo-prod 2>/dev/null || true
 
-# Construir nova imagem
+# Construir nova imagem do backend
 echo ""
-echo ">>> Building new Docker image..."
+echo ">>> Building backend Docker image..."
 echo "$ cd catalogo-backend"
 cd catalogo-backend
 echo "$ docker build -t catalogo-backend:$VERSION -f Dockerfile ."
 docker build -t catalogo-backend:$VERSION -f Dockerfile .
 echo "$ docker tag catalogo-backend:$VERSION catalogo-backend:latest"
 docker tag catalogo-backend:$VERSION catalogo-backend:latest
+echo "$ cd .."
+cd ..
+
+# Construir nova imagem do frontend
+echo ""
+echo ">>> Building frontend Docker image..."
+echo "$ cd catalogo-frontend"
+cd catalogo-frontend
+echo "$ docker build -t catalogo-frontend:$VERSION -f Dockerfile ."
+docker build -t catalogo-frontend:$VERSION -f Dockerfile .
+echo "$ docker tag catalogo-frontend:$VERSION catalogo-frontend:latest"
+docker tag catalogo-frontend:$VERSION catalogo-frontend:latest
 echo "$ cd .."
 cd ..
 
@@ -50,7 +62,8 @@ for i in {1..12}; do
     if docker-compose -f docker-compose.prod.yml logs api-prod 2>/dev/null | grep -q "Started CatalogoBackendApplication"; then
         echo ""
         echo "==== DEPLOY SUCCESS ===="
-        echo "Application available at: http://localhost:8081"
+        echo "Frontend available at: http://localhost:3000"
+        echo "Backend API available at: http://localhost:8081"
         echo "Health check: http://localhost:8081/actuator/health"
         echo ""
         echo ">>> Container status:"

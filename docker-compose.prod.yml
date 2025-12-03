@@ -47,7 +47,18 @@ services:
           memory: 512M
           cpus: '0.5'
 
-# nginx removido temporariamente para simplificar o teste de deploy
+  frontend-prod:
+    build:
+      context: ./catalogo-frontend
+      dockerfile: Dockerfile
+    container_name: catalogo-frontend-prod
+    ports:
+      - "3000:80"
+    networks:
+      - catalogo-prod
+    restart: unless-stopped
+    depends_on:
+      - api-prod
 
 volumes:
   postgres_data_prod:
