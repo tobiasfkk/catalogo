@@ -15,7 +15,7 @@ pipeline {
                 not { buildingTag() }
             }
             steps {
-                echo '🔨 Compilando e testando...'
+                echo 'Building and testing...'
                 dir('catalogo-backend') {
                     sh 'chmod +x mvnw'
                     sh './mvnw clean test'
@@ -37,7 +37,7 @@ pipeline {
                 }
             }
             steps {
-                echo '🚀 Fazendo deploy da versão ${env.TAG_NAME}...'
+                echo 'Deploying version ${env.TAG_NAME}...'
                 dir('catalogo-backend') {
                     sh './mvnw clean package -DskipTests'
                 }
@@ -52,10 +52,10 @@ pipeline {
     
     post {
         success {
-            echo '✅ Pipeline executado com sucesso!'
+            echo 'Pipeline executed successfully!'
         }
         failure {
-            echo '❌ Pipeline falhou!'
+            echo 'Pipeline failed!'
         }
     }
 }
