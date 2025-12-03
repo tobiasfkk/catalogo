@@ -79,7 +79,6 @@
     "RunOnceActivity.git.unshallow": "true",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1": "true",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "main",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/tobiaskiefer/udesc/catalogo",
@@ -186,7 +185,7 @@
       <workItem from="1762481712674" duration="96000" />
       <workItem from="1763301585603" duration="1001000" />
       <workItem from="1764116075365" duration="3395000" />
-      <workItem from="1764121259169" duration="4568000" />
+      <workItem from="1764121259169" duration="5611000" />
     </task>
     <servers />
   </component>

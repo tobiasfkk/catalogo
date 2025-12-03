@@ -12,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfigurationSource;
 
 /**
  * Configuração de segurança da aplicação
@@ -25,16 +26,21 @@ public class SecurityConfig {
 
     @Autowired
     private JwtAuthenticationFilter jwtAuthenticationFilter;
+    
+    @Autowired
+    private CorsConfigurationSource corsConfigurationSource;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .csrf(csrf -> csrf.disable()) // Desabilita CSRF (não precisa para API REST)
+            .cors(cors -> cors.configurationSource(corsConfigurationSource)) // Configura CORS
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // Não usa sessão
             .authorizeHttpRequests(auth -> auth
                 // Endpoints públicos (não precisam de token)
                 .requestMatchers("/auth/**").permitAll() // Login é público
                 .requestMatchers("/products/**").permitAll() // Products públicos por enquanto
+                .requestMatchers("/actuator/health").permitAll() // Health check público para deploy
                 // Todos os outros endpoints precisam de autenticação
                 .anyRequest().authenticated()
             )

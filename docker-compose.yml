@@ -1,0 +1,64 @@
+services:
+  database:
+    image: postgres:15
+    container_name: catalogo-database
+    environment:
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME:-catalogo_db}
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backups:/backups
+    networks:
+      - catalogo
+    restart: unless-stopped
+
+  backend:
+    image: catalogo-backend:latest
+    container_name: catalogo-backend
+    ports:
+      - "8081:8080"
+    depends_on:
+      - database
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://database:5432/${DB_NAME:-catalogo_db}
+      SPRING_DATASOURCE_USERNAME: ${DB_USER:-postgres}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
+      SPRING_PROFILES_ACTIVE: production
+      JWT_SECRET: ${JWT_SECRET}
+    networks:
+      - catalogo
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: '1.0'
+        reservations:
+          memory: 512M
+          cpus: '0.5'
+
+  frontend:
+    image: catalogo-frontend:latest
+    container_name: catalogo-frontend
+    ports:
+      - "3000:80"
+    networks:
+      - catalogo
+    restart: unless-stopped
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
+
+networks:
+  catalogo:
+    driver: bridge
