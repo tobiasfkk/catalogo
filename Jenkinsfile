@@ -1,6 +1,10 @@
 pipeline {
     agent any
     
+    parameters {
+        string(name: 'DEPLOY_TAG', defaultValue: '', description: 'Tag para deploy (deixe vazio para builds normais)')
+    }
+    
     environment {
         DOCKER_IMAGE = 'catalogo-backend'
     }
@@ -21,7 +25,11 @@ pipeline {
         
         stage('Deploy') {
             when {
-                buildingTag()
+                anyOf {
+                    buildingTag()
+                    expression { return env.GIT_BRANCH?.contains('refs/tags/') }
+                    expression { return params.DEPLOY_TAG != null }
+                }
             }
             steps {
                 echo '🚀 Fazendo deploy da versão ${env.TAG_NAME}...'
@@ -29,8 +37,9 @@ pipeline {
                     sh './mvnw clean package -DskipTests'
                 }
                 script {
-                    // Executar script de deploy
-                    sh "./deploy.sh ${env.TAG_NAME}"
+                    def deployTag = params.DEPLOY_TAG ?: env.TAG_NAME ?: 'latest'
+                    echo "Deploy da versão: ${deployTag}"
+                    sh "./deploy.sh ${deployTag}"
                 }
             }
         }
