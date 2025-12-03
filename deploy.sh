@@ -6,7 +6,11 @@
 set -e  # Parar se houver erro
 
 VERSION=${1:-latest}
-echo "==== DEPLOY STARTED - VERSION: $VERSION ===="
+echo "🚀 ==== DEPLOY STARTED - VERSION: $VERSION ===="
+echo "📅 $(date '+%Y-%m-%d %H:%M:%S')"
+echo "🔧 Jenkins Build: ${BUILD_NUMBER:-N/A}"
+echo "🌱 Git Branch/Tag: ${GIT_BRANCH:-N/A}"
+echo ""
 
 # Parar containers em execução (se existirem)
 echo ">>> Stopping current application..."
@@ -65,10 +69,12 @@ for i in {1..12}; do
     # Verificar se aplicação respondeu nos logs
     if docker-compose logs backend 2>/dev/null | grep -q "Started CatalogoBackendApplication"; then
         echo ""
-        echo "==== DEPLOY SUCCESS ===="
-        echo "Frontend available at: http://localhost:3000"
-        echo "Backend API available at: http://localhost:8081"
-        echo "Health check: http://localhost:8081/actuator/health"
+        echo "✅ ==== DEPLOY SUCCESS - VERSION: $VERSION ===="
+        echo "🌐 Frontend available at: http://localhost:3000"
+        echo "🔥 Backend API available at: http://localhost:8081"
+        echo "💚 Health check: http://localhost:8081/actuator/health"
+        echo "📊 Admin login: admin/admin123"
+        echo "👤 Client login: cliente/cliente123"
         echo ""
         echo ">>> Container status:"
         echo "$ docker ps | grep catalogo"
@@ -78,7 +84,7 @@ for i in {1..12}; do
 done
 
 echo ""
-echo "==== DEPLOY FAILED - TIMEOUT ===="
+echo "❌ ==== DEPLOY FAILED - TIMEOUT - VERSION: $VERSION ===="
 echo "Application did not start within 2 minutes"
 echo ""
 echo ">>> Application logs:"
