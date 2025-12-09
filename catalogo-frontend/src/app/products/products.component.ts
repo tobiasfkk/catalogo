@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { WebsocketService } from '../websocket.service';
+import { Subscription } from 'rxjs';
 
 interface Product {
   id: number;
@@ -203,17 +205,60 @@ interface Product {
     }
   `]
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, OnDestroy {
   products: Product[] = [];
   isLoading = true;
   errorMessage = '';
   userName = '';
+  private wsSubscription?: Subscription;
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private websocketService: WebsocketService
+  ) {}
 
   ngOnInit() {
     this.loadUserInfo();
     this.loadProducts();
+    this.connectWebSocket();
+  }
+
+  ngOnDestroy() {
+    if (this.wsSubscription) {
+      this.wsSubscription.unsubscribe();
+    }
+    this.websocketService.disconnect();
+  }
+
+  connectWebSocket() {
+    this.websocketService.connect();
+    
+    this.wsSubscription = this.websocketService.productEvents$.subscribe(event => {
+      switch (event.type) {
+        case 'created':
+          // Adiciona novo produto se ele estiver ativo
+          if (event.data.ativo) {
+            this.products.unshift(event.data);
+            console.log('✨ Produto adicionado automaticamente!');
+          }
+          break;
+          
+        case 'updated':
+          // Atualiza produto existente
+          const updateIndex = this.products.findIndex(p => p.id === event.data.id);
+          if (updateIndex !== -1) {
+            this.products[updateIndex] = event.data;
+            console.log('🔄 Produto atualizado automaticamente!');
+          }
+          break;
+          
+        case 'deleted':
+          // Remove produto da lista
+          this.products = this.products.filter(p => p.id !== event.data);
+          console.log('🗑️ Produto removido automaticamente!');
+          break;
+      }
+    });
   }
 
   loadUserInfo() {
