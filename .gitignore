@@ -1,0 +1,22 @@
+# Variáveis de ambiente
+.env
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Backups
+backups/
+*.backup
+
+# Logs
+*.log
+
+# Docker volumes data
+postgres_data/
+jenkins_home/
