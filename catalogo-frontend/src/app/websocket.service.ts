@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import * as Stomp from 'stompjs';
-import * as SockJS from 'sockjs-client';
+import { Client } from '@stomp/stompjs';
+import SockJS from 'sockjs-client';
 import { Subject } from 'rxjs';
 
 export interface ProductEvent {
@@ -12,7 +12,7 @@ export interface ProductEvent {
   providedIn: 'root'
 })
 export class WebsocketService {
-  private stompClient: any;
+  private stompClient: Client | null = null;
   private productEvents = new Subject<ProductEvent>();
   
   public productEvents$ = this.productEvents.asObservable();
@@ -20,43 +20,63 @@ export class WebsocketService {
   constructor() {}
 
   connect(): void {
-    const socket = new SockJS('http://localhost:8081/ws');
-    this.stompClient = Stomp.over(socket);
-    
-    // Desabilitar logs do Stomp (opcional)
-    this.stompClient.debug = null;
-    
-    this.stompClient.connect({}, () => {
-      console.log('✅ WebSocket conectado!');
+    if (this.stompClient?.connected) {
+      return;
+    }
+
+    this.stompClient = new Client({
+      webSocketFactory: () => new SockJS('http://localhost:8081/ws') as any,
       
-      // Escutar produtos criados
-      this.stompClient.subscribe('/topic/products/created', (message: any) => {
-        const product = JSON.parse(message.body);
-        console.log('🆕 Novo produto criado:', product);
-        this.productEvents.next({ type: 'created', data: product });
-      });
+      connectHeaders: {},
       
-      // Escutar produtos atualizados
-      this.stompClient.subscribe('/topic/products/updated', (message: any) => {
-        const product = JSON.parse(message.body);
-        console.log('🔄 Produto atualizado:', product);
-        this.productEvents.next({ type: 'updated', data: product });
-      });
+      debug: (str) => {
+        // Desabilitar logs ou usar console.log(str) para debug
+      },
       
-      // Escutar produtos deletados
-      this.stompClient.subscribe('/topic/products/deleted', (message: any) => {
-        const productId = JSON.parse(message.body);
-        console.log('🗑️ Produto deletado:', productId);
-        this.productEvents.next({ type: 'deleted', data: productId });
-      });
-    }, (error: any) => {
-      console.error('❌ Erro ao conectar WebSocket:', error);
+      reconnectDelay: 5000,
+      heartbeatIncoming: 4000,
+      heartbeatOutgoing: 4000,
+      
+      onConnect: () => {
+        console.log('✅ WebSocket conectado!');
+        
+        // Escutar produtos criados
+        this.stompClient?.subscribe('/topic/products/created', (message) => {
+          const product = JSON.parse(message.body);
+          console.log('🆕 Novo produto criado:', product);
+          this.productEvents.next({ type: 'created', data: product });
+        });
+        
+        // Escutar produtos atualizados
+        this.stompClient?.subscribe('/topic/products/updated', (message) => {
+          const product = JSON.parse(message.body);
+          console.log('🔄 Produto atualizado:', product);
+          this.productEvents.next({ type: 'updated', data: product });
+        });
+        
+        // Escutar produtos deletados
+        this.stompClient?.subscribe('/topic/products/deleted', (message) => {
+          const productId = JSON.parse(message.body);
+          console.log('🗑️ Produto deletado:', productId);
+          this.productEvents.next({ type: 'deleted', data: productId });
+        });
+      },
+      
+      onStompError: (frame) => {
+        console.error('❌ Erro STOMP:', frame);
+      },
+      
+      onWebSocketError: (error) => {
+        console.error('❌ Erro WebSocket:', error);
+      }
     });
+
+    this.stompClient.activate();
   }
 
   disconnect(): void {
     if (this.stompClient) {
-      this.stompClient.disconnect();
+      this.stompClient.deactivate();
       console.log('🔌 WebSocket desconectado');
     }
   }
