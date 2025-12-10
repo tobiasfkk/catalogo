@@ -42,9 +42,11 @@ pipeline {
                         sh 'docker build -t catalogo-frontend:latest -f Dockerfile .'
                     }
                     
+                    echo ">>> Stopping old containers..."
+                    sh 'docker-compose down || true'
+                    
                     echo ">>> Starting new version..."
-                    sh 'export DB_PASSWORD=postgres123'
-                    sh 'docker-compose up -d --remove-orphans'
+                    sh 'export DB_PASSWORD=postgres123 && docker-compose up -d'
                     
                     echo ">>> Waiting for application to start..."
                     sleep 30
