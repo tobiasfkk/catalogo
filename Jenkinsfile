@@ -43,7 +43,9 @@ pipeline {
                     }
                     
                     echo ">>> Stopping old containers..."
-                    sh 'docker-compose down || true'
+                    sh 'docker stop catalogo-frontend catalogo-backend catalogo-database 2>/dev/null || true'
+                    sh 'docker rm catalogo-frontend catalogo-backend catalogo-database 2>/dev/null || true'
+                    sh 'docker-compose down 2>/dev/null || true'
                     
                     echo ">>> Starting new version..."
                     sh 'export DB_PASSWORD=postgres123 && docker-compose up -d'
