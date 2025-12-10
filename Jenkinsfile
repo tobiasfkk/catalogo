@@ -7,7 +7,7 @@ pipeline {
     
     triggers {
         // Trigger automático no push para main
-        pollSCM('H/5 * * * *') // Verifica a cada 5 minutos
+        pollSCM('* * * * *') // Verifica a cada 1 minuto
     }
     
     stages {
