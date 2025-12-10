@@ -41,6 +41,7 @@ public class SecurityConfig {
                 .requestMatchers("/auth/**").permitAll() // Login é público
                 .requestMatchers("/products/**").permitAll() // Products públicos por enquanto
                 .requestMatchers("/actuator/health").permitAll() // Health check público para deploy
+                .requestMatchers("/ws/**").permitAll() // WebSocket público
                 // Todos os outros endpoints precisam de autenticação
                 .anyRequest().authenticated()
             )
