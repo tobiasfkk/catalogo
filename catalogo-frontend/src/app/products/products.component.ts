@@ -1,9 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { WebsocketService } from '../websocket.service';
+import { WebsocketService, ProductEvent } from '../websocket.service';
 import { Subscription } from 'rxjs';
 
 interface Product {
@@ -526,8 +525,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
-    private websocketService: WebsocketService,
-    private http: HttpClient
+    private websocketService: WebsocketService
   ) {}
 
   ngOnInit() {
@@ -547,7 +545,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   connectWebSocket() {
     this.websocketService.connect();
     
-    this.wsSubscription = this.websocketService.productEvents$.subscribe(event => {
+    this.wsSubscription = this.websocketService.productEvents$.subscribe((event: ProductEvent) => {
       switch (event.type) {
         case 'created':
           // Adiciona novo produto se ele estiver ativo
