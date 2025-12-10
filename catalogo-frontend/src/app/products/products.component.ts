@@ -587,8 +587,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
       try {
         const payload = JSON.parse(atob(token.split('.')[1]));
         console.log('JWT Payload:', payload);
-        console.log('Roles no payload:', payload.roles);
-        this.isAdmin = payload.roles?.includes('ADMIN') || false;
+        console.log('Perfil no payload:', payload.perfil);
+        this.isAdmin = payload.perfil === 'ADMIN';
         console.log('isAdmin definido como:', this.isAdmin);
       } catch (error) {
         console.error('Erro ao decodificar token:', error);
