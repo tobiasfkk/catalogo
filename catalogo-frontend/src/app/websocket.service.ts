@@ -38,36 +38,36 @@ export class WebsocketService {
       heartbeatOutgoing: 4000,
       
       onConnect: () => {
-        console.log('✅ WebSocket conectado!');
+        console.log('WebSocket conectado!');
         
         // Escutar produtos criados
         this.stompClient?.subscribe('/topic/products/created', (message) => {
           const product = JSON.parse(message.body);
-          console.log('🆕 Novo produto criado:', product);
+          console.log('Novo produto criado:', product);
           this.productEvents.next({ type: 'created', data: product });
         });
         
         // Escutar produtos atualizados
         this.stompClient?.subscribe('/topic/products/updated', (message) => {
           const product = JSON.parse(message.body);
-          console.log('🔄 Produto atualizado:', product);
+          console.log('Produto atualizado:', product);
           this.productEvents.next({ type: 'updated', data: product });
         });
         
         // Escutar produtos deletados
         this.stompClient?.subscribe('/topic/products/deleted', (message) => {
           const productId = JSON.parse(message.body);
-          console.log('🗑️ Produto deletado:', productId);
+          console.log('Produto deletado:', productId);
           this.productEvents.next({ type: 'deleted', data: productId });
         });
       },
       
       onStompError: (frame) => {
-        console.error('❌ Erro STOMP:', frame);
+        console.error('Erro STOMP:', frame);
       },
       
       onWebSocketError: (error) => {
-        console.error('❌ Erro WebSocket:', error);
+        console.error('Erro WebSocket:', error);
       }
     });
 

@@ -13,7 +13,7 @@ pipeline {
     stages {
         stage('Build & Test') {
             steps {
-                echo "🔨 Building and testing..."
+                echo "Building and testing..."
                 echo "Branch: ${env.GIT_BRANCH}"
                 echo "Commit: ${env.GIT_COMMIT}"
                 
@@ -27,7 +27,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    echo "🚀 Fazendo build da aplicação..."
+                    echo "Fazendo build da aplicação..."
                     dir('catalogo-backend') {
                         sh './mvnw clean package -DskipTests'
                     }
@@ -57,12 +57,12 @@ pipeline {
                     sh 'docker ps | grep catalogo'
                     
                     echo ""
-                    echo "✅ ==== DEPLOY SUCCESS ===="
-                    echo "🌐 Frontend available at: http://localhost:3000"
-                    echo "🔥 Backend API available at: http://localhost:8081"
-                    echo "💚 Health check: http://localhost:8081/actuator/health"
-                    echo "📊 Admin login: admin@catalogo.com / admin123"
-                    echo "👤 Client login: cliente@catalogo.com / cliente123"
+                    echo "==== DEPLOY SUCCESS ===="
+                    echo "Frontend available at: http://localhost:3000"
+                    echo "Backend API available at: http://localhost:8081"
+                    echo "Health check: http://localhost:8081/actuator/health"
+                    echo "Admin login: admin@catalogo.com / admin123"
+                    echo "Client login: cliente@catalogo.com / cliente123"
                 }
             }
         }

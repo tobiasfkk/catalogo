@@ -1,4 +1,4 @@
-# 🛍️ Sistema de Catálogo - Full Stack com CI/CD Automático
+# Sistema de Catálogo - Full Stack com CI/CD Automático
 
 Sistema completo de catálogo de produtos com autenticação JWT, frontend Angular e backend Spring Boot, incluindo pipeline CI/CD automático.
 
@@ -6,23 +6,23 @@ Sistema completo de catálogo de produtos com autenticação JWT, frontend Angul
 
 ```
 catalogo/
-├── jenkins/                    # 🔧 Jenkins com Docker support
+├── jenkins/                    # Jenkins com Docker support
 │   ├── docker-compose.yml     # Sobe Jenkins na porta 8080
 │   └── Dockerfile             # Jenkins + JDK21 + Docker CLI
 ├── catalogo-backend/          # ☕ Spring Boot API
 │   ├── src/                   # Código Java
 │   ├── Dockerfile             # Build da API
 │   └── pom.xml               # Dependências Maven
-├── catalogo-frontend/         # 🎨 Angular 20
+├── catalogo-frontend/         # Angular 20
 │   ├── src/                   # Código TypeScript
 │   └── Dockerfile            # Build do frontend
 ├── docker-compose.yml         # 🐳 Orquestra aplicação completa
-├── deploy.sh                  # 📦 Script de deploy automático
-├── Jenkinsfile               # 🚀 Pipeline CI/CD
+├── deploy.sh                  # Script de deploy automático
+├── Jenkinsfile               # Pipeline CI/CD
 └── README.md                 # 📖 Esta documentação
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Subir Jenkins
 ```bash
@@ -52,7 +52,7 @@ git push origin v1.5.0
 # Jenkins detecta e faz deploy automático!
 ```
 
-## 🔄 Workflow CI/CD Automático
+## Workflow CI/CD Automático
 
 - **Push na `main`** → Build & Test automático
 - **Nova tag** (`v*.*.*`) → Build, Test & **Deploy automático**
@@ -84,7 +84,7 @@ git push origin v1.6.0
 - **backend** (Spring Boot API) → porta 8081
 - **frontend** (Angular/Nginx) → porta 3000
 
-## 🌐 URLs da Aplicação
+## URLs da Aplicação
 
 Após o deploy:
 - **Frontend**: http://localhost:3000
@@ -92,7 +92,7 @@ Após o deploy:
 - **Health Check**: http://localhost:8081/actuator/health
 - **Jenkins**: http://localhost:8080
 
-## 👤 Credenciais
+## Credenciais
 
 ### Aplicação
 - **Admin**: admin / admin123
@@ -102,7 +102,7 @@ Após o deploy:
 - **User**: admin
 - **Password**: admin
 
-## 🔧 Desenvolvimento Local
+## Desenvolvimento Local
 
 ### Backend (Spring Boot)
 ```bash
@@ -117,7 +117,7 @@ npm install
 npm start
 ```
 
-## 📦 Deploy Manual
+## Deploy Manual
 ```bash
 # Garantir que variáveis de ambiente estejam configuradas
 export DB_PASSWORD=postgres123
@@ -127,7 +127,7 @@ export JWT_SECRET=seu-secret-aqui
 ./deploy.sh v1.0.0
 ```
 
-## 🛠️ Stack Tecnológica
+## Stack Tecnológica
 
 - **Backend**: Spring Boot 3.x + PostgreSQL
 - **Frontend**: Angular 20 + Material Design

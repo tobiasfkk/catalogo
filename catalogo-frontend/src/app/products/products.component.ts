@@ -239,7 +239,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
           // Adiciona novo produto se ele estiver ativo
           if (event.data.ativo) {
             this.products.unshift(event.data);
-            console.log('✨ Produto adicionado automaticamente!');
+            console.log('Produto adicionado automaticamente!');
           }
           break;
           
@@ -248,14 +248,14 @@ export class ProductsComponent implements OnInit, OnDestroy {
           const updateIndex = this.products.findIndex(p => p.id === event.data.id);
           if (updateIndex !== -1) {
             this.products[updateIndex] = event.data;
-            console.log('🔄 Produto atualizado automaticamente!');
+            console.log('Produto atualizado automaticamente!');
           }
           break;
           
         case 'deleted':
           // Remove produto da lista
           this.products = this.products.filter(p => p.id !== event.data);
-          console.log('🗑️ Produto removido automaticamente!');
+          console.log('Produto removido automaticamente!');
           break;
       }
     });
