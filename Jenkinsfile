@@ -1,10 +1,6 @@
 pipeline {
     agent any
     
-    parameters {
-        string(name: 'DEPLOY_TAG', defaultValue: '', description: 'Tag para deploy manual (opcional)')
-    }
-    
     environment {
         DOCKER_IMAGE = 'catalogo-backend'
     }
@@ -16,11 +12,10 @@ pipeline {
     
     stages {
         stage('Build & Test') {
-            // Sempre executa build & test (main pushes e tags)
             steps {
-                echo "Building and testing..."
+                echo "🔨 Building and testing..."
                 echo "Branch: ${env.GIT_BRANCH}"
-                echo "Build Cause: ${currentBuild.getBuildCauses()}"
+                echo "Commit: ${env.GIT_COMMIT}"
                 
                 dir('catalogo-backend') {
                     sh 'chmod +x mvnw'
@@ -30,32 +25,40 @@ pipeline {
         }
         
         stage('Deploy') {
-            when {
-                anyOf {
-                    // Deploy automático quando for tag
-                    buildingTag()
-                    
-                    // Deploy manual com parâmetro
-                    expression { return params.DEPLOY_TAG != null && params.DEPLOY_TAG != '' }
-                }
-            }
             steps {
                 script {
-                    def deployTag = params.DEPLOY_TAG ?: env.TAG_NAME ?: 'latest'
-                    
-                    if (buildingTag()) {
-                        echo "🚀 Deploy AUTOMÁTICO da tag: ${env.TAG_NAME}"
-                    } else if (params.DEPLOY_TAG) {
-                        echo "🚀 Deploy MANUAL da versão: ${deployTag}"
-                    }
-                    
-                    echo "Fazendo build da aplicação..."
+                    echo "🚀 Fazendo build da aplicação..."
                     dir('catalogo-backend') {
                         sh './mvnw clean package -DskipTests'
                     }
                     
-                    echo "Executando deploy da versão: ${deployTag}"
-                    sh "./deploy.sh ${deployTag}"
+                    echo ">>> Building backend Docker image..."
+                    dir('catalogo-backend') {
+                        sh 'docker build -t catalogo-backend:latest -f Dockerfile .'
+                    }
+                    
+                    echo ">>> Building frontend Docker image..."
+                    dir('catalogo-frontend') {
+                        sh 'docker build -t catalogo-frontend:latest -f Dockerfile .'
+                    }
+                    
+                    echo ">>> Starting new version..."
+                    sh 'export DB_PASSWORD=postgres123'
+                    sh 'docker-compose up -d --remove-orphans'
+                    
+                    echo ">>> Waiting for application to start..."
+                    sleep 30
+                    
+                    // Verifica se os containers estão rodando
+                    sh 'docker ps | grep catalogo'
+                    
+                    echo ""
+                    echo "✅ ==== DEPLOY SUCCESS ===="
+                    echo "🌐 Frontend available at: http://localhost:3000"
+                    echo "🔥 Backend API available at: http://localhost:8081"
+                    echo "💚 Health check: http://localhost:8081/actuator/health"
+                    echo "📊 Admin login: admin@catalogo.com / admin123"
+                    echo "👤 Client login: cliente@catalogo.com / cliente123"
                 }
             }
         }
