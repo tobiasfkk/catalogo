@@ -57,12 +57,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             if (jwtUtil.validateToken(token, email)) {
                 String perfil = jwtUtil.extractPerfil(token);
 
-                // Cria a autenticação com o perfil do usuário
+                // Cria a autenticação com o perfil do usuário (sem prefixo ROLE_)
                 UsernamePasswordAuthenticationToken authentication =
                     new UsernamePasswordAuthenticationToken(
                         email,
                         null,
-                        Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + perfil))
+                        Collections.singletonList(new SimpleGrantedAuthority(perfil))
                     );
 
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
