@@ -56,6 +56,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             // Valida o token
             if (jwtUtil.validateToken(token, email)) {
                 String perfil = jwtUtil.extractPerfil(token);
+                
+                System.out.println("DEBUG - Email: " + email);
+                System.out.println("DEBUG - Perfil extraído: " + perfil);
 
                 // Cria a autenticação com o perfil do usuário (sem prefixo ROLE_)
                 UsernamePasswordAuthenticationToken authentication =
@@ -69,6 +72,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
                 // Marca o usuário como autenticado
                 SecurityContextHolder.getContext().setAuthentication(authentication);
+                
+                System.out.println("DEBUG - Authorities: " + authentication.getAuthorities());
             }
         }
 
