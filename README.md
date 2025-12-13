@@ -425,4 +425,4 @@ Desenvolvido como projeto de aprendizado full-stack com CI/CD.
 
 ---
 
-**Última atualização**: Dezembro 2025
+**Última atualização**: 13 de Dezembro de 2025
