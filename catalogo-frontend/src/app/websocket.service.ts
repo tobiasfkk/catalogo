@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Client } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
 import { Subject } from 'rxjs';
+import { environment } from '../environments/environment';
 
 export interface ProductEvent {
   type: 'created' | 'updated' | 'deleted';
@@ -25,7 +26,7 @@ export class WebsocketService {
     }
 
     this.stompClient = new Client({
-      webSocketFactory: () => new SockJS('http://localhost:8081/ws') as any,
+      webSocketFactory: () => new SockJS(environment.wsUrl) as any,
       
       connectHeaders: {},
       

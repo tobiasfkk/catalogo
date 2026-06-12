@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 interface LoginRequest {
   email: string;
@@ -189,7 +190,7 @@ export class LoginComponent {
     this.errorMessage = '';
 
     try {
-      const response = await fetch('http://localhost:8081/auth/login', {
+      const response = await fetch(`${environment.apiUrl}/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

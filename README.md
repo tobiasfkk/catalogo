@@ -222,38 +222,103 @@ SUBSCRIBE /topic/products   # Subscrever a atualizações de produtos
 
 ### Banco de Dados
 - **Host**: localhost:5433
-- **Database**: catalogo
+- **Database**: catalogo_db
 - **User**: postgres
 - **Password**: postgres123
 
 ## Desenvolvimento Local
 
-### Backend sem Docker
+Para desenvolvimento e estudos, a forma mais prática é deixar apenas o PostgreSQL no Docker e rodar backend/frontend localmente. Assim é possível depurar o backend pelo IntelliJ e usar reload rápido no Angular.
+
+### 1. Manter Apenas o PostgreSQL no Docker
+
+Se a aplicação completa já estiver rodando via Docker Compose, pare backend e frontend:
+
 ```bash
-cd catalogo-backend
-
-# Configurar banco local (ou usar Docker apenas para o PostgreSQL)
-docker run -d -p 5433:5432 -e POSTGRES_PASSWORD=postgres123 -e POSTGRES_DB=catalogo postgres:15
-
-# Executar aplicação
-./mvnw spring-boot:run
-
-# Executar testes
-./mvnw test
+docker compose stop backend frontend
+docker compose up -d database
+docker compose ps
 ```
 
-### Frontend sem Docker
+O esperado é que apenas o serviço `database` fique em execução. O banco estará disponível em:
+
+```text
+jdbc:postgresql://localhost:5433/catalogo_db
+```
+
+### 2. Rodar o Backend no IntelliJ
+
+Abra o módulo `catalogo-backend` no IntelliJ e execute a classe:
+
+```text
+com.loja.catalogo.CatalogoBackendApplication
+```
+
+Por padrão, o `application.yml` já aponta para o PostgreSQL local exposto pelo Docker:
+
+```yaml
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5433/catalogo_db}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:postgres123}
+
+server:
+  port: ${SERVER_PORT:8081}
+```
+
+Com isso, o backend local sobe em:
+
+```text
+http://localhost:8081
+```
+
+### 3. Rodar o Frontend no Terminal
+
 ```bash
 cd catalogo-frontend
 
-# Instalar dependências
 npm install
 
-# Executar em modo desenvolvimento
-npm start
+ng serve
+```
 
-# Build de produção
-npm run build
+O frontend ficará disponível em:
+
+```text
+http://localhost:4200
+```
+
+As URLs do backend ficam centralizadas em:
+
+```text
+catalogo-frontend/src/environments/environment.ts
+```
+
+Por padrão, o frontend chama:
+
+```text
+http://localhost:8081
+```
+
+### 4. Resumo das Portas em Desenvolvimento
+
+| Serviço | Como roda | URL |
+|---------|-----------|-----|
+| PostgreSQL | Docker Compose | localhost:5433 |
+| Backend | IntelliJ ou Maven | http://localhost:8081 |
+| Frontend | `ng serve` | http://localhost:4200 |
+
+Para parar tudo:
+
+```bash
+docker compose down
+```
+
+Para voltar ao modo totalmente containerizado:
+
+```bash
+./deploy.sh
 ```
 
 ## Pipeline CI/CD

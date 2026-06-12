@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { WebsocketService, ProductEvent } from '../websocket.service';
 import { Subscription } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 interface Product {
   id: number;
@@ -633,8 +634,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
     try {
       const url = this.isEditMode 
-        ? `http://localhost:8081/products/${this.currentProduct.id}`
-        : 'http://localhost:8081/products';
+        ? `${environment.apiUrl}/products/${this.currentProduct.id}`
+        : `${environment.apiUrl}/products`;
       
       const method = this.isEditMode ? 'PUT' : 'POST';
 
@@ -676,7 +677,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     }
 
     try {
-      const response = await fetch(`http://localhost:8081/products/${id}`, {
+      const response = await fetch(`${environment.apiUrl}/products/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -709,7 +710,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
         return;
       }
 
-      const response = await fetch('http://localhost:8081/products', {
+      const response = await fetch(`${environment.apiUrl}/products`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
