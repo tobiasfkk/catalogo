@@ -638,6 +638,14 @@ export class ProductsComponent implements OnInit, OnDestroy {
         : `${environment.apiUrl}/products`;
       
       const method = this.isEditMode ? 'PUT' : 'POST';
+      const payload = this.isEditMode
+        ? this.currentProduct
+        : {
+            nome: this.currentProduct.nome,
+            descricao: this.currentProduct.descricao,
+            preco: this.currentProduct.preco,
+            ativo: this.currentProduct.ativo
+          };
 
       const response = await fetch(url, {
         method: method,
@@ -645,7 +653,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(this.currentProduct)
+        body: JSON.stringify(payload)
       });
 
       if (response.ok) {
